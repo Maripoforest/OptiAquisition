@@ -12,8 +12,13 @@ def talker():
     auto = geometry_msgs.msg.PoseStamped()
     while not rospy.is_shutdown():
         # hello_str = "hello world %s" % rospy.get_time()
-        auto.pose.position.x += 1
-        auto.pose.position.y -= 1
+        auto.pose.position.x += 1  
+        auto.pose.position.x %= 60 
+        if(auto.pose.position.y):
+            auto.pose.position.y -= 1
+        else:
+            auto.pose.position.y = 60
+        auto.pose.position.z = auto.pose.position.x * auto.pose.position.y
         rospy.loginfo(auto)
         pub.publish(auto)
         rate.sleep()
