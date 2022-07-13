@@ -58,7 +58,8 @@ if __name__ == '__main__' :
         if os.stat(filename).st_size == 0:
             l = 0
         else:
-            l = pd.read_csv(filename).length
+            file = pd.read_csv(filename)
+            l = len(file)
         print("file already exists with",l,"lines")
         rp = input("Continue? yes/no\n")
         if (rp == 'yes'):
